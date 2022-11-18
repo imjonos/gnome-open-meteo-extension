@@ -1,0 +1,8 @@
+{
+  "name": "OpenMeteo",
+  "description": "OpenMeteo Gnome Extesion 0.1a",
+  "uuid": "openmeteo@toprogram.ru",
+  "shell-version": [
+    "43"
+  ]
+}

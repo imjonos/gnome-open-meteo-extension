@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="OpenMeteo">
+	<schema id="org.gnome.shell.extensions.openmeteo" path="/org/gnome/shell/extensions/openmeteo/">
+    <key name="title" type="s">
+      <default>"Temp:"</default>
+    </key>
+    <key name="latitude" type="d">
+      <default>0</default>
+    </key>
+    <key name="longitude" type="d">
+      <default>0</default>
+    </key>
+	</schema>
+</schemalist>

@@ -1,3 +1,5 @@
 # OpenMeteo Gnome Extesion 0.1a
 
-![image](https://user-images.githubusercontent.com/5132976/202744282-b0a9d160-7bd6-49c4-8690-fc29542cd6b2.png)
+Base on Open-Meteo - open-source weather API https://open-meteo.com/en
+
+![image](https://user-images.githubusercontent.com/5132976/202988600-bcaa8e76-b7b4-4a6c-bb30-ec9ea7360c6c.png)

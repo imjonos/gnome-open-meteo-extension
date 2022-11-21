@@ -1,4 +1,4 @@
-# OpenMeteo Gnome Extesion 0.1a
+# OpenMeteo Gnome Extension 0.1a
 
 Base on Open-Meteo - open-source weather API https://open-meteo.com/en
 

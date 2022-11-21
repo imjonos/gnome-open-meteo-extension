@@ -27,10 +27,9 @@ const Main = imports.ui.main;
 const PanelMenu = imports.ui.panelMenu;
 const PopupMenu = imports.ui.popupMenu;
 const Lang = imports.lang;
+
 const TIMEOUT = 1800;
-let label = new St.Label({text: "Loading..."});
-let textLabel = 'Temp:';
-let hourlyData = '';
+const INDICATOR_CLASS = 'openmeteo-label';
 
 const _ = ExtensionUtils.gettext;
 let _httpSession;
@@ -39,9 +38,9 @@ const Indicator = GObject.registerClass(
     class Indicator extends PanelMenu.Button {
         _init() {
             //TODO: dirty code need to fix
+            this.hourlyData = '';
             this.settings = ExtensionUtils.getSettings('org.gnome.shell.extensions.openmeteo');
-            
-            textLabel = this.settings.get_string('title');
+            this.label = new St.Label({ style_class: INDICATOR_CLASS, text: "Loading..."});
             
             this.lat = this.settings.get_double('latitude');
             this.lon = this.settings.get_double('longitude');
@@ -57,11 +56,11 @@ const Indicator = GObject.registerClass(
             });
             
             this.add_child(icon);*/
-            this.add_child(label);
+            this.add_child(this.label);
             
             let item1 = new PopupMenu.PopupMenuItem(_('Hourly weather'));
             item1.connect('activate', () => {
-                Main.notify(hourlyData);
+                Main.notify(this.hourlyData);
             });
             this.menu.addMenuItem(item1);
             
@@ -127,11 +126,12 @@ const Indicator = GObject.registerClass(
             let temperature2m = data.hourly_units.temperature_2m.toString();
             let temperature = data.current_weather.temperature.toString();
             let value = temperature + ' ' + temperature2m;
-            label.set_text(`${textLabel} ${value}`);
-            hourlyData = '';
+            let textLabel = this.settings.get_string('title');
+            this.label.set_text(`${textLabel} ${value}`);
+            this.hourlyData = '';
             data.hourly.time.forEach((element, index) => {
                 if(index<24) {
-                    hourlyData += element.toString() + ' - ' + data.hourly.temperature_2m[index].toString() + '' + temperature2m + '\r';
+                    this.hourlyData += element.toString() + ' - ' + data.hourly.temperature_2m[index].toString() + '' + temperature2m + '\r';
                 }
             });
             
@@ -146,12 +146,7 @@ class Extension {
         ExtensionUtils.initTranslations(GETTEXT_DOMAIN);
     }
 
-    enable() {
-        this.settings = ExtensionUtils.getSettings('org.gnome.shell.extensions.openmeteo');
-        let indicatorName = `${Me.metadata.name} Indicator`;
-        
-        log(`enabling ${indicatorName}`);
-        
+    enable() { 
         this._indicator = new Indicator();
         Main.panel.addToStatusArea(this._uuid, this._indicator, 0, 'center');
     }

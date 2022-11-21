@@ -1,1 +1,5 @@
 /* Add your custom extension styling here */
+
+.openmeteo-label {
+  padding-top: 5px;
+}

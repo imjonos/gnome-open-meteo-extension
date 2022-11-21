@@ -13,3 +13,4 @@ Version 1.0:
 - Add Icons
 - Add weather for multiple days
 - Add city selection in settings 
+- Add styles for hourly weather modal

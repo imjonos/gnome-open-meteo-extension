@@ -48,14 +48,6 @@ const Indicator = GObject.registerClass(
              _httpSession = new Soup.Session();
                 
             super._init(0.0, _('OpenMeteo'));
-           
-            
-            /*let icon = new St.Icon({
-            gicon: new Gio.ThemedIcon({name: 'find-location-symbolic'}),
-                style_class: 'system-status-icon'
-            });
-            
-            this.add_child(icon);*/
             this.add_child(this.label);
             
             let item1 = new PopupMenu.PopupMenuItem(_('Hourly weather'));
